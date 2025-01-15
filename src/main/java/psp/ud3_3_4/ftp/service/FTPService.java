@@ -39,8 +39,14 @@ public class FTPService {
     }
 
 
+    /**
+     * Devuelve una lista con los nombres de los ficheros contenidos en el directorio consultado
+     *
+     * @return
+     * @throws IOException
+     */
     public List<String> listNames() throws IOException {
-        return Arrays.stream(clienteFTP.listNames()).toList();
+        throw new UnsupportedOperationException("Operacion a realizar por el alumno");
     }
 
     public boolean uploadFile(String localFilePath, String remoteFilePath) throws IOException {
