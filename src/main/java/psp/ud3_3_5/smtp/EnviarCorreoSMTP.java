@@ -11,8 +11,8 @@ public class EnviarCorreoSMTP {
         // Configuración del servidor SMTP
         String host ="sandbox.smtp.mailtrap.io"; // Cambia esto por tu servidor SMTP
         String puerto = "587";
-        String usuario = "637cea7bdda3ed";
-        String contraseña = "6d6a8e5193f986";
+        String usuario = "CAMBIAR_POR_MI_USER";
+        String contraseña = "CAMBIAR_POR_MI_PASS";
 
         // Propiedades de la conexión
         Properties propiedades = new Properties();
@@ -41,7 +41,7 @@ public class EnviarCorreoSMTP {
             Transport.send(mensaje);
             System.out.println("Correo enviado exitosamente.");
         } catch (MessagingException e) {
-            e.printStackTrace();
+            System.out.println("Error enviando email: " +e) ;
         }
     }
 }
