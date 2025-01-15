@@ -37,16 +37,7 @@ public class ServidorTCP {
                 // Crear flujo de salida para enviar la respuesta al cliente
                 PrintWriter out = new PrintWriter(clienteSocket.getOutputStream(), true);
 
-                // Get the current date and time
-                LocalDateTime now = LocalDateTime.now();
-
-                // Define the format
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
-               // Format the current date and time
-                String formattedNow = now.format(formatter);
-
-                out.println(formattedNow);
+                out.println(mensajeModificado);
 
                 // Cerrar la conexión con el cliente
                 clienteSocket.close();
