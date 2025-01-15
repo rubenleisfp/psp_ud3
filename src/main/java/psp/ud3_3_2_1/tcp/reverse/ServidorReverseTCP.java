@@ -24,23 +24,22 @@ public class ServidorReverseTCP {
                 // Esperar a que un cliente se conecte
                 Socket clienteSocket = serverSocket.accept();
                 System.out.println("Cliente conectado");
+                System.out.println("Cliente conectado");
 
                 // Crear flujo de entrada para recibir el mensaje del cliente
                 BufferedReader in = new BufferedReader(new InputStreamReader(clienteSocket.getInputStream()));
 
+                // Leer el mensaje del cliente
+                String mensajeCliente = in.readLine();
+                System.out.println("Mensaje recibido del cliente: " + mensajeCliente);
+
+                // Convertir el mensaje a mayúsculas
+                String mensajeModificado = mensajeCliente.toUpperCase();
+
+                // Crear flujo de salida para enviar la respuesta al cliente
                 PrintWriter out = new PrintWriter(clienteSocket.getOutputStream(), true);
 
-                String text = "";
-                do {
-                    // Leer el mensaje del cliente
-                    text = in.readLine();
-
-                    // Revertir el mensaje
-                    String reverseText = new StringBuilder(text).reverse().toString();
-
-                    // Crear flujo de salida para enviar la respuesta al cliente
-                    out.println( reverseText);
-                } while (!text.equals("bye"));
+                out.println(mensajeModificado);
 
                 // Cerrar la conexión con el cliente
                 clienteSocket.close();

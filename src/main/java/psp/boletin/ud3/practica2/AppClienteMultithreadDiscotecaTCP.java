@@ -1,7 +1,5 @@
 package psp.boletin.ud3.practica2;
 
-import psp.ud3_3_2_1.tcp.reverse.ClienteReverseTCP;
-
 public class AppClienteMultithreadDiscotecaTCP {
 
 
