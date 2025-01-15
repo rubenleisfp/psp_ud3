@@ -1,11 +1,7 @@
 package psp.boletin.ud3.practica10;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.io.*;
+import java.net.*;
 
 public class ChatServer {
     public static void main(String[] args) throws IOException {
@@ -18,8 +14,11 @@ public class ChatServer {
         Socket client2 = serverSocket.accept();
         System.out.println("Cliente 2 conectado.");
 
-        new Thread(new ClientHandler(client1, client2)).start();
-        new Thread(new ClientHandler(client2, client1)).start();
+
+        throw new UnsupportedOperationException("A implementar por el alumno");
+        //TODO
+        // Hay que crear 2 threads, en el que le pasemos un clientHandler con el cliente 1 y cliente en para el primer thread
+        // para el segundo thread le pasaremos la inversa, cliente 2 y cliente1
     }
 }
 
@@ -34,16 +33,13 @@ class ClientHandler implements Runnable {
 
     @Override
     public void run() {
-        try (
-            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            PrintWriter out = new PrintWriter(otherClientSocket.getOutputStream(), true)
-        ) {
-            String message;
-            while ((message = in.readLine()) != null) {
-                out.println(message);
-            }
-        } catch (IOException e) {
-            System.out.println("Conexión cerrada: " + e.getMessage());
-        }
+
+        //1. Creamos un bufferedReader a partir de clienteSocket
+        //2. Creamos un printwriter para otherClientSocket
+        //3. Hacemos un bucle mientras las lineas de entrada (1) sea distintas de nulo
+        //4. En el bucle anterior debemos enviar mensajes al printWriter (2)
+
+        throw new UnsupportedOperationException("A implementar por el alumno");
     }
+
 }

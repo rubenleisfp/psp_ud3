@@ -13,8 +13,8 @@ public class SMTPApp {
         // Configuración del servidor SMTP
         String host = "sandbox.smtp.mailtrap.io"; // Cambia esto por tu servidor SMTP
         int puerto = 587;
-        String usuario = "637cea7bdda3ed";
-        String contraseña = "6d6a8e5193f986";
+        String usuario = "MI_USER";
+        String contraseña = "MI_PASS";
 
         // Crear instancia de SMTPService
         SMTPService smtpService = new SMTPService(host, puerto, usuario, contraseña);
