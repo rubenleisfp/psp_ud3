@@ -44,54 +44,7 @@ public class ServidorChatAutenticadoTCP {
 
         @Override
         public void run() {
-            boolean isUserValid =false;
-            try (BufferedReader in = new BufferedReader(new InputStreamReader(clienteSocket.getInputStream()))) {
-
-                // Flujo de salida para el cliente
-                out = new PrintWriter(clienteSocket.getOutputStream(), true);
-
-
-                String mensaje;
-                // Leer mensajes del cliente y retransmitirlos a todos los demás
-                while ((mensaje = in.readLine()) != null) {
-                    System.out.println("Mensaje recibido: " + mensaje);
-                    if (esPrimerMensaje) {
-                        esPrimerMensaje=false;
-                        isUserValid= comprobarCredenciales(mensaje);
-                        if (isUserValid) {
-                            ClientesRegistrados.agregarCliente(out);
-                        } else {
-                            out.println("Autenticacion fallido. No podra ni enviar ni recibir mensajes en el chat grupal");
-                        }
-                    } else {
-                        if (isUserValid) {
-                            enviarMensajeATodos(mensaje, out);
-                        }
-                    }
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    clienteSocket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                // Eliminar al cliente de la lista al desconectarse
-                if (isUserValid) {
-                    ClientesRegistrados.eliminarCliente(out);
-                }
-                System.out.println("Cliente desconectado");
-            }
-        }
-
-        private boolean comprobarCredenciales(String mensaje) {
-            String [] credenciales = mensaje.split(":");
-            String username = credenciales[0];
-            String password = credenciales[1];
-            boolean isValid = ClientesRegistrados.credencialesValidas(username,password);
-            return isValid;
+            throw new UnsupportedOperationException("A implementar por el alumno");
         }
     }
 

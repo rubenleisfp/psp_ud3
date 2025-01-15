@@ -50,28 +50,7 @@ public class ServidorMultithreadDiscotecaTCP {
 
         @Override
         public void run() {
-            try (BufferedReader in = new BufferedReader(new InputStreamReader(clienteSocket.getInputStream()));
-                 PrintWriter out = new PrintWriter(clienteSocket.getOutputStream(), true)) {
-
-                String text;
-                // Leer el mensaje del cliente
-                text = in.readLine();
-                if (CLAVE.equals(text)) {
-                    numCliente++;
-                    out.println("Se te ha asignado el numero de cliente " + numCliente);
-                } else {
-                    out.println("Desconoce la clave secreta, no se te ha asignado el numero de cliente ");
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    clienteSocket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            throw new UnsupportedOperationException("A implementar por el alumno");
         }
     }
 
