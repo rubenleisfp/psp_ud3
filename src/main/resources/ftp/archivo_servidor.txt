@@ -1,0 +1,1 @@
+Ejemplo de fichero para descargar por FTP y enviar como adjunto
