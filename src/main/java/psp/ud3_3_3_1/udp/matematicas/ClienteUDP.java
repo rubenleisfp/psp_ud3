@@ -21,19 +21,11 @@ public class ClienteUDP {
 
             // Bucle para enviar mensajes múltiples al servidor
             Scanner scanner = new Scanner(System.in);
+            String mensaje;
 
-            System.out.print("Introduce una operacion: ");
-            String opArg = scanner.nextLine();
+            System.out.print("Introduce un mensaje: ");
+            mensaje = scanner.nextLine();
 
-            System.out.print("Introduce el primero numero: ");
-            String num1Arg = scanner.nextLine();
-            int numero1 = Integer.valueOf(num1Arg);
-
-            System.out.print("Introduce el segundo numero : ");
-            String num2Arg = scanner.nextLine();
-            int numero2 = Integer.valueOf(num2Arg);
-
-            String mensaje = UtilidadesMensaje.crearMensaje(opArg, num1Arg, num2Arg);
             // Enviar el mensaje al servidor
             enviarMensaje(socket, direccionServidor, mensaje);
             recibirRespuesta(socket);
@@ -41,9 +33,6 @@ public class ClienteUDP {
             e.printStackTrace();
         }
     }
-
-
-
 
     // Método para enviar un mensaje al servidor
     private void enviarMensaje(DatagramSocket socket, InetAddress direccionServidor, String mensaje) throws IOException {

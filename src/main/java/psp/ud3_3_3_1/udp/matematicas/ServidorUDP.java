@@ -36,8 +36,7 @@ public class ServidorUDP {
         System.out.println("Mensaje recibido del cliente: " + mensajeRecibido);
 
         // Preparar la respuesta
-        String respuesta = UtilidadesMensaje.procesarMensaje(mensajeRecibido);
-
+        String respuesta = "Servidor: Mensaje recibido, " + mensajeRecibido;
         //Convertimos el mensaje de String a un array de bytes
         byte[] bufferEnvio = respuesta.getBytes();
 

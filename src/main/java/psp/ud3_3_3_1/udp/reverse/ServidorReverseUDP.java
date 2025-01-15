@@ -36,14 +36,14 @@ public class ServidorReverseUDP {
         System.out.println("Mensaje recibido del cliente: " + mensajeRecibido);
 
         // Preparar la respuesta
-        String reverseText = new StringBuilder(mensajeRecibido).reverse().toString();
+        String respuesta = "Servidor: Mensaje recibido, " + mensajeRecibido;
         //Convertimos el mensaje de String a un array de bytes
-        byte[] bufferEnvio = reverseText.getBytes();
+        byte[] bufferEnvio = respuesta.getBytes();
 
         // Enviar la respuesta al cliente
         DatagramPacket paqueteEnvio = new DatagramPacket(bufferEnvio, bufferEnvio.length, paqueteRecibo.getAddress(), paqueteRecibo.getPort());
         socket.send(paqueteEnvio);
-        System.out.println("Respuesta enviada al cliente: " + reverseText);
+        System.out.println("Respuesta enviada al cliente: " + respuesta);
     }
 
 

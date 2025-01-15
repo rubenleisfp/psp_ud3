@@ -22,20 +22,13 @@ public class ClienteReverseUDP {
             // Bucle para enviar mensajes múltiples al servidor
             Scanner scanner = new Scanner(System.in);
             String mensaje;
-            do {
-                System.out.print("Introduce un mensaje (escribe 'bye' para salir): ");
-                mensaje = scanner.nextLine();
 
-                // Enviar el mensaje al servidor
-                enviarMensaje(socket, direccionServidor, mensaje);
+            System.out.print("Introduce un mensaje: ");
+            mensaje = scanner.nextLine();
 
-                // Recibir respuesta del servidor si el mensaje no es "bye"
-                if (!mensaje.equalsIgnoreCase("bye")) {
-                    recibirRespuesta(socket);
-                }
-
-            } while (!mensaje.equalsIgnoreCase("bye"));
-
+            // Enviar el mensaje al servidor
+            enviarMensaje(socket, direccionServidor, mensaje);
+            recibirRespuesta(socket);
         } catch (IOException e) {
             e.printStackTrace();
         }
