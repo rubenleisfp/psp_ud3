@@ -2,7 +2,7 @@ package psp.ud3_3_3_1.udp.matematicas;
 
 public class UtilidadesMensaje {
 
-    public static String crearMensaje(String opArg, String num1Arg, String num2Arg) {
+    public static String crearMensaje(String opArg, int num1Arg, int num2Arg) {
         StringBuilder sb = new StringBuilder();
         sb.append(opArg);
         sb.append(";");

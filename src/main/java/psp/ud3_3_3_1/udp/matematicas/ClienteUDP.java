@@ -25,15 +25,31 @@ public class ClienteUDP {
             System.out.print("Introduce una operacion: ");
             String opArg = scanner.nextLine();
 
-            System.out.print("Introduce el primero numero: ");
-            String num1Arg = scanner.nextLine();
-            int numero1 = Integer.valueOf(num1Arg);
+            int numero1 = 1;
+            int numero2 = 0;
+            while (true) {
+                System.out.print("Introduce el primero numero: ");
+                String num1Arg = scanner.nextLine();
+                try {
+                    numero1 = Integer.valueOf(num1Arg);
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("El primer numero debe ser un entero");
+                }
+            }
 
-            System.out.print("Introduce el segundo numero : ");
-            String num2Arg = scanner.nextLine();
-            int numero2 = Integer.valueOf(num2Arg);
+            while (true) {
+                System.out.print("Introduce el segundo numero : ");
+                String num2Arg = scanner.nextLine();
+                try {
+                    numero2 = Integer.valueOf(num2Arg);
+                    break;
+                } catch (NumberFormatException e) {
+                    System.out.println("El segundo numero debe ser un entero");
+                }
+            }
 
-            String mensaje = UtilidadesMensaje.crearMensaje(opArg, num1Arg, num2Arg);
+            String mensaje = UtilidadesMensaje.crearMensaje(opArg, numero1, numero2);
             // Enviar el mensaje al servidor
             enviarMensaje(socket, direccionServidor, mensaje);
             recibirRespuesta(socket);
