@@ -26,6 +26,11 @@ public class ClienteReverseTCP {
              BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
 
             System.out.println("Conectado al servidor");
+            //TODO
+            // 1.- Debera utilizarse Scanner para pedir una palabra al usuario.
+            // 2.- Una vez pedida habrá que enviarla por el conducto out hacia el servidor
+            // 3.- Una vez recibida la palabra del servidor, debera imprimirse en pantalla
+            // 4.- El proceso se repetira hasta que el usuario introduzca la palabra "bye"
 
             // Enviar mensaje al servidor
             out.println(mensaje);

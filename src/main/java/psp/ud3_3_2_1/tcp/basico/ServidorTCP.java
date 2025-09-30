@@ -45,7 +45,7 @@ public class ServidorTCP {
 
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println("Error en el servidor: " + e);
         }
     }
 }
