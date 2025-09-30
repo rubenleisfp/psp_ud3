@@ -17,14 +17,14 @@ public class FTPService {
     private final String servidor;
     private final int puerto;
     private final String usuario;
-    private final String contraseña;
+    private final String contrasenha;
     private final FTPClient clienteFTP;
 
-    public FTPService(String servidor, int puerto, String usuario, String contraseña) {
+    public FTPService(String servidor, int puerto, String usuario, String contrasenha) {
         this.servidor = servidor;
         this.puerto = puerto;
         this.usuario = usuario;
-        this.contraseña = contraseña;
+        this.contrasenha = contrasenha;
         this.clienteFTP = new FTPClient();
     }
 
@@ -36,7 +36,7 @@ public class FTPService {
         // Conectar al servidor
         System.out.println("Intentando conectar al servidor FTP...");
         clienteFTP.connect(servidor, puerto);
-        if (clienteFTP.login(usuario, contraseña)) {
+        if (clienteFTP.login(usuario, contrasenha)) {
             System.out.println("Conectado al servidor FTP.");
         } else {
             throw new IOException("No se pudo iniciar sesión en el servidor FTP.");

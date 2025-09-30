@@ -12,17 +12,17 @@ public class FTPToEmailApp {
         String ftpServidor = "127.0.0.1"; // Cambia esto por tu servidor FTP
         int ftpPuerto = 21;
         String ftpUsuario = "alumno1";
-        String ftpContraseña = "12345";
+        String ftpContrasenha = "12345";
 
         // Configuración del servidor SMTP
         String smtpHost = "sandbox.smtp.mailtrap.io";
         int smtpPuerto = 587;
-        String smtpUsuario = "637cea7bdda3ed";
-        String smtpContraseña = "6d6a8e5193f986";
+        String smtpUsuario = "CAMBIAR_POR_MI_USER";
+        String smtpContrasenha = "CAMBIAR_POR_MI_PASS";
 
         // Crear instancias de servicios
-        FTPService ftpService = new FTPService(ftpServidor, ftpPuerto, ftpUsuario, ftpContraseña);
-        SMTPService smtpService = new SMTPService(smtpHost, smtpPuerto, smtpUsuario, smtpContraseña);
+        FTPService ftpService = new FTPService(ftpServidor, ftpPuerto, ftpUsuario, ftpContrasenha);
+        SMTPService smtpService = new SMTPService(smtpHost, smtpPuerto, smtpUsuario, smtpContrasenha);
 
         Scanner scanner = new Scanner(System.in);
 
