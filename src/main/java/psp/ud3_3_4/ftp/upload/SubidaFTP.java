@@ -18,7 +18,7 @@ public class SubidaFTP {
         String servidor = "127.0.0.1"; // Cambia esto por tu servidor FTP
         int puerto = 21; // Asegúrate de que sea el correcto
         String usuario = "alumno1";
-        String contraseña = "12345";
+        String contrasenha = "12345";
 
         FTPClient clienteFTP = new FTPClient();
 
@@ -38,7 +38,7 @@ public class SubidaFTP {
             clienteFTP.setFileType(FTP.BINARY_FILE_TYPE);
 
             // Iniciar sesión
-            boolean login = clienteFTP.login(usuario, contraseña);
+            boolean login = clienteFTP.login(usuario, contrasenha);
             if (login) {
                 System.out.println("Conectado al servidor FTP.");
 
