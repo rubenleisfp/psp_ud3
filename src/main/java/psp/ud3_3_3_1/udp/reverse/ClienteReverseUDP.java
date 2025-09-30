@@ -37,7 +37,7 @@ public class ClienteReverseUDP {
             } while (!mensaje.equalsIgnoreCase("bye"));
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error al conectar al servidor: " + e.getMessage());
         }
     }
 

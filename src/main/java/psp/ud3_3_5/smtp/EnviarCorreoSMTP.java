@@ -41,7 +41,7 @@ public class EnviarCorreoSMTP {
             Transport.send(mensaje);
             System.out.println("Correo enviado exitosamente.");
         } catch (MessagingException e) {
-            e.printStackTrace();
+            System.err.println("Error al enviar el correo: " + e.getMessage());
         }
     }
 }

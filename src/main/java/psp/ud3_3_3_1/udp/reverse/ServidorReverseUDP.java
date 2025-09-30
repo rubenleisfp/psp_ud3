@@ -19,7 +19,7 @@ public class ServidorReverseUDP {
                 recibirYResponder(socket); // Método dedicado para manejar los mensajes
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error al iniciar el servidor: " + e.getMessage());
         }
     }
 

@@ -59,7 +59,7 @@ public class SubidaFTP {
                 System.out.println("No se pudo iniciar sesión en el servidor FTP.");
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error al conectar al servidor FTP: " + e.getMessage());
         } finally {
             try {
                 if (clienteFTP.isConnected()) {
@@ -67,7 +67,7 @@ public class SubidaFTP {
                     System.out.println("Desconectado del servidor FTP.");
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                System.err.println("Error al conectar al servidor FTP: " + e.getMessage());
             }
         }
     }

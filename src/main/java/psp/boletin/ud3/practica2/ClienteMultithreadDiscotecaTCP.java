@@ -46,7 +46,7 @@ public class ClienteMultithreadDiscotecaTCP {
 
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error al conectar al servidor: " + e.getMessage());
         }
     }
 

@@ -61,7 +61,7 @@ public class DescargaFTP {
                 System.out.println("No se pudo iniciar sesión en el servidor FTPS.");
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error al descargar el archivo: " + e.getMessage());
         } finally {
             try {
                 if (clienteFTP.isConnected()) {
@@ -69,7 +69,7 @@ public class DescargaFTP {
                     System.out.println("Desconectado del servidor FTPS.");
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                System.err.println("Error al desconectar del servidor FTPS: " + e.getMessage());
             }
         }
     }

@@ -64,12 +64,12 @@ public class ServidorMultithreadDiscotecaTCP {
                 }
 
             } catch (IOException e) {
-                e.printStackTrace();
+                System.err.println("Error al recibir mensajes del cliente: " + e.getMessage());
             } finally {
                 try {
                     clienteSocket.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    System.err.println("Error al conectar al servidor: " + e.getMessage());
                 }
             }
         }

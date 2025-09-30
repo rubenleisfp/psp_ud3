@@ -31,7 +31,7 @@ public class ClienteChatTCP {
             } while (!mensaje.equalsIgnoreCase("bye"));
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error al conectar al servidor: " + e.getMessage());
         }
     }
 
@@ -52,7 +52,7 @@ public class ClienteChatTCP {
                     System.out.println(mensaje);
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                System.err.println("Error al recibir mensajes del servidor: " + e.getMessage());
             }
         }
     }

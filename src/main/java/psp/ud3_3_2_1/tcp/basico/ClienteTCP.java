@@ -33,7 +33,7 @@ public class ClienteTCP {
             System.out.println("Respuesta del servidor: " + respuestaServidor);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error en el cliente: " + e);
         }
     }
 

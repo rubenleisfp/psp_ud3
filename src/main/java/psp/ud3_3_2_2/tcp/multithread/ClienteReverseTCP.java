@@ -44,7 +44,7 @@ public class ClienteReverseTCP {
                 System.out.println("Respuesta del servidor: " + respuestaServidor);
             } while (!text.equals("bye"));
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error al conectar al servidor: " + e.getMessage());
         }
     }
 
