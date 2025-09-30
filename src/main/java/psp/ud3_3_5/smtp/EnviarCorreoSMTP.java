@@ -12,7 +12,7 @@ public class EnviarCorreoSMTP {
         String host ="sandbox.smtp.mailtrap.io"; // Cambia esto por tu servidor SMTP
         String puerto = "587";
         String usuario = "637cea7bdda3ed";
-        String contraseña = "6d6a8e5193f986";
+        String contrasenha = "6d6a8e5193f986";
 
         // Propiedades de la conexión
         Properties propiedades = new Properties();
@@ -25,7 +25,7 @@ public class EnviarCorreoSMTP {
         Session sesion = Session.getInstance(propiedades, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(usuario, contraseña);
+                return new PasswordAuthentication(usuario, contrasenha);
             }
         });
 

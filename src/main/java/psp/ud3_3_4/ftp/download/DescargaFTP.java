@@ -18,7 +18,7 @@ public class DescargaFTP {
         String servidor = "127.0.0.1"; // Dirección del servidor FTPS
         int puerto = 21; // Puerto estándar para FTPS
         String usuario = "alumno1";
-        String contraseña = "12345";
+        String contrasenha = "12345";
 
         // Crear el cliente FTPS
         FTPClient clienteFTP = new FTPClient();
@@ -36,7 +36,7 @@ public class DescargaFTP {
             System.out.println("Conexión establecida con el servidor FTPS.");
 
             // Iniciar sesión
-            boolean login = clienteFTP.login(usuario, contraseña);
+            boolean login = clienteFTP.login(usuario, contrasenha);
             if (login) {
                 System.out.println("Conectado al servidor FTPS.");
 
