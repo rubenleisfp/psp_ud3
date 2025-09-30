@@ -30,7 +30,7 @@ public class ClienteUDP {
             enviarMensaje(socket, direccionServidor, mensaje);
             recibirRespuesta(socket);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error al recibir mensajes del cliente: " + e.getMessage());
         }
     }
 

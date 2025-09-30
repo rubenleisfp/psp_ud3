@@ -34,7 +34,7 @@ public class ClienteChatAutenticadoTCP {
             } while (!mensaje.equalsIgnoreCase("bye"));
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error al conectar al servidor: " + e.getMessage());
         }
     }
 
@@ -55,7 +55,7 @@ public class ClienteChatAutenticadoTCP {
                     System.out.println(mensaje);
                 }
             } catch (IOException e) {
-                e.printStackTrace();
+                System.err.println("Error al leer mensajes del servidor: " + e.getMessage());
             }
         }
     }
