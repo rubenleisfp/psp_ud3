@@ -11,13 +11,13 @@ public class SMTPService {
     private final String host;
     private final int puerto;
     private final String usuario;
-    private final String contraseña;
+    private final String contrasenha;
 
-    public SMTPService(String host, int puerto, String usuario, String contraseña) {
+    public SMTPService(String host, int puerto, String usuario, String contrasenha) {
         this.host = host;
         this.puerto = puerto;
         this.usuario = usuario;
-        this.contraseña = contraseña;
+        this.contrasenha = contrasenha;
     }
 
     private Session createSession() {
@@ -30,7 +30,7 @@ public class SMTPService {
         return Session.getInstance(propiedades, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(usuario, contraseña);
+                return new PasswordAuthentication(usuario, contrasenha);
             }
         });
     }

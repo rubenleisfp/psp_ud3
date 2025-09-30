@@ -29,9 +29,9 @@ public class FTPApp {
         String servidor = "127.0.0.1"; // Cambia esto por tu servidor FTP
         int puerto = 21; // FTPS usa el mismo puerto que FTP por defecto
         String usuario = "alumno1";
-        String contraseña = "12345";
+        String contrasenha = "12345";
         // Crear instancia de FTPService
-        ftpService = new FTPService(servidor, puerto, usuario, contraseña);
+        ftpService = new FTPService(servidor, puerto, usuario, contrasenha);
 
         try {
             // Conectar al servidor FTP
