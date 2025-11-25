@@ -11,14 +11,14 @@ import java.io.PrintWriter;
 
 public class SubidaFTP {
 
-    private static final String LOCAL_FILE_PATH  = "src/main/resources/ftp/subir_ftp.txt";
-    private static final String REMOTE_FILE_PATH  = "/subir.ftp.txt";
+    private static final String LOCAL_FILE_PATH  = "src/main/resources/ftp/ruben_ftp.txt";
+    private static final String REMOTE_FILE_PATH  = "/ruben_ftp.txt";
 
     public static void main(String[] args) {
-        String servidor = "127.0.0.1"; // Cambia esto por tu servidor FTP
+        String servidor = "ftp.drivehq.com";
         int puerto = 21; // Asegúrate de que sea el correcto
-        String usuario = "alumno1";
-        String contrasenha = "12345";
+        String usuario = "rubenleisfp";
+        String contrasenha = "!7ZNyp7At7PiL7s";
 
         FTPClient clienteFTP = new FTPClient();
 
