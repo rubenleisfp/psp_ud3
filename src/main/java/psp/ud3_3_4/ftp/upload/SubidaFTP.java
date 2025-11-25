@@ -11,55 +11,53 @@ import java.io.PrintWriter;
 
 public class SubidaFTP {
 
-    private static final String LOCAL_FILE_PATH  = "src/main/resources/ftp/ruben_ftp.txt";
-    private static final String REMOTE_FILE_PATH  = "/ruben_ftp.txt";
+    private static final String LOCAL_FILE_PATH  = "src/main/resources/ftp/subir_ftp.txt";
+    private static final String REMOTE_FILE_PATH  = "subir_ftp.txt";
 
     public static void main(String[] args) {
         String servidor = "ftp.drivehq.com";
-        int puerto = 21; // Asegúrate de que sea el correcto
+        int puerto = 21;
         String usuario = "rubenleisfp";
-        String contrasenha = "!7ZNyp7At7PiL7s";
+        String contrasenha = "MI_PASS";
 
         FTPClient clienteFTP = new FTPClient();
 
         try {
-            // Activar logging para depuración
             clienteFTP.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out), true));
 
-            // Configurar modo pasivo o activo según sea necesario
-            clienteFTP.enterLocalPassiveMode();
-
-            // Conectarse al servidor FTP
+            // 1) Conectar primero
             System.out.println("Intentando conectar al servidor FTP...");
             clienteFTP.connect(servidor, puerto);
             System.out.println("Conexión establecida con el servidor FTP.");
 
-            // Establecer tipo de archivo
+            // 2) Solo después activar pasivo
+            clienteFTP.enterLocalPassiveMode();
+
+            // Tipo de archivo
             clienteFTP.setFileType(FTP.BINARY_FILE_TYPE);
 
-            // Iniciar sesión
-            boolean login = clienteFTP.login(usuario, contrasenha);
-            if (login) {
+            // 3) Login
+            if (clienteFTP.login(usuario, contrasenha)) {
                 System.out.println("Conectado al servidor FTP.");
 
-                // Subir un archivo
+                // 4) Subir archivo
                 File archivo = new File(LOCAL_FILE_PATH);
                 try (FileInputStream fis = new FileInputStream(archivo)) {
-                    boolean exito = clienteFTP.storeFile(REMOTE_FILE_PATH, fis);
-                    if (exito) {
+                    boolean ok = clienteFTP.storeFile(REMOTE_FILE_PATH, fis);
+                    if (ok) {
                         System.out.println("Archivo subido correctamente.");
                     } else {
-                        System.out.println("Error al subir el archivo.");
+                        System.out.println("Error al subir archivo. Respuesta: " + clienteFTP.getReplyString());
                     }
                 }
 
-                // Cerrar sesión
                 clienteFTP.logout();
             } else {
                 System.out.println("No se pudo iniciar sesión en el servidor FTP.");
             }
+
         } catch (IOException e) {
-            System.err.println("Error al conectar al servidor FTP: " + e.getMessage());
+            System.err.println("Error FTP: " + e.getMessage());
         } finally {
             try {
                 if (clienteFTP.isConnected()) {
@@ -67,7 +65,7 @@ public class SubidaFTP {
                     System.out.println("Desconectado del servidor FTP.");
                 }
             } catch (IOException e) {
-                System.err.println("Error al conectar al servidor FTP: " + e.getMessage());
+                System.err.println("Error al cerrar conexión: " + e.getMessage());
             }
         }
     }

@@ -11,54 +11,52 @@ import java.io.PrintWriter;
 
 public class DescargaFTP {
 
-    private static final String DOWNLOAD_FILE_PATH = "src/main/resources/ftp/descargado_ftp.txt"; // Ruta local donde se guardará el archivo descargado
-    private static final String REMOTE_FILE_NAME = "subir_ftp.txt"; // Nombre del archivo en el servidor
+    private static final String DOWNLOAD_FILE_PATH = "src/main/resources/ftp/descargado_ftp.txt";
+    private static final String REMOTE_FILE_NAME = "subida_ftp.txt"; // Nombre del fichero en DriveHQ
 
     public static void main(String[] args) {
-        String servidor = "127.0.0.1"; // Dirección del servidor FTPS
-        int puerto = 21; // Puerto estándar para FTPS
-        String usuario = "alumno1";
-        String contrasenha = "12345";
+        String servidor = "ftp.drivehq.com";
+        int puerto = 21;
+        String usuario = "rubenleisfp";
+        String contrasenha = "MI_PASS";
 
-        // Crear el cliente FTPS
         FTPClient clienteFTP = new FTPClient();
 
         try {
-            // Activar logging para depuración
             clienteFTP.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out), true));
 
-            // Configurar modo pasivo o activo según sea necesario
+            // 1) Primero conectar
+            System.out.println("Intentando conectar al servidor FTP...");
+            clienteFTP.connect(servidor, puerto);
+            System.out.println("Conexión establecida con el servidor FTP.");
+
+            // 2) Después activar pasivo
             clienteFTP.enterLocalPassiveMode();
 
-            // Conectarse al servidor FTPS
-            System.out.println("Intentando conectar al servidor FTPS...");
-            clienteFTP.connect(servidor, puerto);
-            System.out.println("Conexión establecida con el servidor FTPS.");
-
-            // Iniciar sesión
+            // 3) Login
             boolean login = clienteFTP.login(usuario, contrasenha);
             if (login) {
-                System.out.println("Conectado al servidor FTPS.");
+                System.out.println("Conectado al servidor FTP.");
 
-                //clienteFTPS.execPROT("P");
-                // Configurar el tipo de archivo
+                // 4) Tipo de archivo
                 clienteFTP.setFileType(FTP.BINARY_FILE_TYPE);
 
-                // Descargar un archivo del servidor
+                // 5) Descargar archivo
                 File archivoDescargado = new File(DOWNLOAD_FILE_PATH);
                 try (FileOutputStream fos = new FileOutputStream(archivoDescargado)) {
+
                     boolean exito = clienteFTP.retrieveFile(REMOTE_FILE_NAME, fos);
+
                     if (exito) {
                         System.out.println("Archivo descargado correctamente: " + archivoDescargado.getAbsolutePath());
                     } else {
-                        System.out.println("Error al descargar el archivo.");
+                        System.out.println("Error al descargar archivo. Respuesta: " + clienteFTP.getReplyString());
                     }
                 }
 
-                // Cerrar sesión
                 clienteFTP.logout();
             } else {
-                System.out.println("No se pudo iniciar sesión en el servidor FTPS.");
+                System.out.println("No se pudo iniciar sesión en el servidor FTP.");
             }
         } catch (IOException e) {
             System.err.println("Error al descargar el archivo: " + e.getMessage());
@@ -66,10 +64,10 @@ public class DescargaFTP {
             try {
                 if (clienteFTP.isConnected()) {
                     clienteFTP.disconnect();
-                    System.out.println("Desconectado del servidor FTPS.");
+                    System.out.println("Desconectado del servidor FTP.");
                 }
             } catch (IOException e) {
-                System.err.println("Error al desconectar del servidor FTPS: " + e.getMessage());
+                System.err.println("Error al desconectar del servidor FTP: " + e.getMessage());
             }
         }
     }

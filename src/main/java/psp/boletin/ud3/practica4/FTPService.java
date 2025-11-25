@@ -28,69 +28,110 @@ public class FTPService {
     }
 
     public void connect() throws IOException {
-        // Activar logging para depuración
-        clienteFTP.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out), true));
+
+        // Logging para depuración
+        clienteFTP.addProtocolCommandListener(
+                new PrintCommandListener(new PrintWriter(System.out), true)
+        );
+
+        //DriveHQ exige PASV en el cliente
         clienteFTP.enterLocalPassiveMode();
 
-        // Conectar al servidor
         System.out.println("Intentando conectar al servidor FTP...");
         clienteFTP.connect(servidor, puerto);
-        if (clienteFTP.login(usuario, contrasenha)) {
-            System.out.println("Conectado al servidor FTP.");
-        } else {
+
+        if (!clienteFTP.login(usuario, contrasenha)) {
             throw new IOException("No se pudo iniciar sesión en el servidor FTP.");
         }
+
+        System.out.println("Conectado al servidor FTP.");
+
+        // Tipo binario obligatorio para cualquier archivo
+        clienteFTP.setFileType(FTP.BINARY_FILE_TYPE);
     }
 
-
     public List<String> listNames() throws IOException {
-        return Arrays.stream(clienteFTP.listNames()).toList();
+        String[] names = clienteFTP.listNames();
+
+        if (names == null) {
+            System.out.println("El servidor devolvió NULL para listNames(). Puede ser un directorio vacío.");
+            return List.of();
+        }
+
+        return Arrays.asList(names);
     }
 
     public boolean uploadFile(String localFilePath, String remoteFilePath) throws IOException {
         File localFile = new File(localFilePath);
+
+        if (!localFile.exists()) {
+            System.out.println("El archivo no existe: " + localFilePath);
+            return false;
+        }
+
         try (FileInputStream fis = new FileInputStream(localFile)) {
+
+            // DriveHQ necesita modo binario
             clienteFTP.setFileType(FTP.BINARY_FILE_TYPE);
+
+            System.out.println("Subiendo archivo: " + localFilePath);
+
             boolean success = clienteFTP.storeFile(remoteFilePath, fis);
+
             if (success) {
                 System.out.println("Archivo subido correctamente: " + localFilePath + " -> " + remoteFilePath);
             } else {
                 System.out.println("Error al subir el archivo: " + localFilePath);
             }
+
             return success;
         }
     }
 
     public boolean downloadFile(String remoteFilePath, String localFilePath) throws IOException {
         File localFile = new File(localFilePath);
+
         try (FileOutputStream fos = new FileOutputStream(localFile)) {
+
             clienteFTP.setFileType(FTP.BINARY_FILE_TYPE);
+
+            System.out.println("Descargando archivo: " + remoteFilePath);
+
             boolean success = clienteFTP.retrieveFile(remoteFilePath, fos);
+
             if (success) {
-                System.out.println("Archivo descargado correctamente: " + remoteFilePath + " -> " + localFilePath);
+                System.out.println("Archivo descargado correctamente: " + remoteFilePath +
+                        " -> " + localFilePath);
             } else {
                 System.out.println("Error al descargar el archivo: " + remoteFilePath);
             }
+
             return success;
         }
     }
 
-    public  List<FileData> getFileData(String remotePath) throws IOException {
+    public List<FileData> getFileData(String remotePath) throws IOException {
         FTPFile[] ftpFiles = clienteFTP.listFiles(remotePath);
-        List<FileData> fileDataList = new ArrayList<>();
-        for (FTPFile file : ftpFiles) {
-            if (file.isFile()){
 
+        List<FileData> fileDataList = new ArrayList<>();
+
+        for (FTPFile file : ftpFiles) {
+            if (file.isFile()) {
                 FileData fileData = new FileData();
                 fileData.setName(file.getName());
-                LocalDate localDate = file.getTimestamp().getTime().toInstant()
+
+                LocalDate localDate = file.getTimestamp().getTime()
+                        .toInstant()
                         .atZone(ZoneId.systemDefault())
                         .toLocalDate();
+
                 fileData.setLocalDate(localDate);
                 fileData.setSize(file.getSize());
+
                 fileDataList.add(fileData);
             }
         }
+
         return fileDataList;
     }
 
