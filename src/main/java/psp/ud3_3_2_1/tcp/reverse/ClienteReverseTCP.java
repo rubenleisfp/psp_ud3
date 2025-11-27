@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Scanner;
 
 // Clase que representa el cliente TCP
 public class ClienteReverseTCP {
@@ -28,17 +29,31 @@ public class ClienteReverseTCP {
             System.out.println("Conectado al servidor");
             //TODO
             // 1.- Debera utilizarse Scanner para pedir una palabra al usuario.
-            // 2.- Una vez pedida habrá que enviarla por el conducto out hacia el servidor
-            // 3.- Una vez recibida la palabra del servidor, debera imprimirse en pantalla
-            // 4.- El proceso se repetira hasta que el usuario introduzca la palabra "bye"
+            String text="";
 
-            // Enviar mensaje al servidor
-            out.println(mensaje);
-            System.out.println("Mensaje enviado al servidor: " + mensaje);
+            Scanner sc = new Scanner(System.in);
+            do {
+                System.out.println("Introduzca una palabra:");
+                System.out.flush(); //Asegura que la linea se imprima antes de recibir la entrada
+                text = sc.nextLine();
 
-            // Leer la respuesta del servidor
-            String respuestaServidor = in.readLine();
-            System.out.println("Respuesta del servidor: " + respuestaServidor);
+                // 2.- Una vez pedida habrá que enviarla por el conducto out hacia el servidor
+                out.println(text);
+
+                // 3.- Una vez recibida la palabra del servidor, debera imprimirse en pantalla
+                String respuesta = in.readLine();
+                System.out.println("Respuesta del servidor:" + respuesta);
+                // 4.- El proceso se repetira hasta que el usuario introduzca la palabra "bye"
+
+
+                // Enviar mensaje al servidor
+                out.println(mensaje);
+                System.out.println("Mensaje enviado al servidor: " + mensaje);
+
+                // Leer la respuesta del servidor
+                String respuestaServidor = in.readLine();
+                System.out.println("Respuesta del servidor: " + respuestaServidor);
+            } while (!text.equals("bye"));
 
         } catch (IOException e) {
             System.out.println("Error en el cliente: " + e);
