@@ -77,7 +77,7 @@ public class FTPService {
 
     public  List<FileData> getFileData(String remotePath) throws IOException {
         //1.- Itera sobre la lista de ficheros obtenidos del FTP: https://commons.apache.org/proper/commons-net/apidocs/org/apache/commons/net/ftp/FTPClient.html#listFiles()
-        //2.- Por cada fichero, crea un objeto FileData
+        //2.- Por cada fichero.txt, crea un objeto FileData
         //3.- Devuelve una lista de FileData
         throw new UnsupportedOperationException("A completar por el alumno");
     }

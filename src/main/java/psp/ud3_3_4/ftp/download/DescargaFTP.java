@@ -11,14 +11,14 @@ import java.io.PrintWriter;
 
 public class DescargaFTP {
 
-    private static final String DOWNLOAD_FILE_PATH = "src/main/resources/ftp/descargado_ftp.txt"; // Ruta local donde se guardará el archivo descargado
+    private static final String DOWNLOAD_FILE_PATH = "src/main/resources/ftp/como_gusteis.txt"; // Ruta local donde se guardará el archivo descargado
     private static final String REMOTE_FILE_NAME = "subir_ftp.txt"; // Nombre del archivo en el servidor
 
     public static void main(String[] args) {
-        String servidor = "127.0.0.1"; // Dirección del servidor FTPS
+        String servidor = "ftp.drivehq.com"; // Dirección del servidor FTPS
         int puerto = 21; // Puerto estándar para FTPS
-        String usuario = "alumno1";
-        String contrasenha = "12345";
+        String usuario = "rubenleisfp";
+        String contrasenha = "!7ZNyp7At7PiL7s";
 
         // Crear el cliente FTPS
         FTPClient clienteFTP = new FTPClient();

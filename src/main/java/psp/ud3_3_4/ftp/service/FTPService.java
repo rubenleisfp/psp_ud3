@@ -34,7 +34,7 @@ public class FTPService {
         if (clienteFTP.login(usuario, contrasenha)) {
             System.out.println("Conectado al servidor FTP.");
         } else {
-            throw new IOException("No se pudo iniciar sesión en el servidor FTP.");
+            throw new IOException("No se pudo iniciar sesión en el servidor FTP. Credenciales erroneas. Reviselas");
         }
     }
 
